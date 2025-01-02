@@ -47,7 +47,7 @@ class KycTwo extends Component
 
     public $date_of_birth;
     public $occupation_business;
-    public $date_of_birth_bs;
+    public $date_of_birth_bs;      
 
     
 
