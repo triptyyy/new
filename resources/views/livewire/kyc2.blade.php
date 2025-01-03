@@ -61,6 +61,22 @@
             </div>
                 <h5 class="mb-5 text-left"><u>Detail of Account Holder</u></h5>
         </div>
+
+        <div>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label for="account_number" class="form-label">Account Number</label>
+                    <input type="text" wire:model="account_number" class="form-control form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="account_id" class="form-label">Account ID</label>
+                    <input type="text" wire:model="account_id" class="form-control form-control">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" wire:click="submit" class="btn btn-primary" >Submit</button>
+                </div>
+            </div>
+        </div>
     
         <div class="row mb-4">
             <label class="form-label" for="full_name">1. Full Name</label>

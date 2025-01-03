@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class KycTwo extends Component
 {
+    public $account_number, $account_id;
 
     public $provinces;
     public $districts;
@@ -49,7 +50,10 @@ class KycTwo extends Component
     public $occupation_business;
     public $date_of_birth_bs;      
 
-    
+    public function call(){
+        $BaseAPImsService = new BaseAPImsService();
+        $BaseAPImsService->process(function_name,data);
+    }
 
     public function render()
     {
@@ -142,6 +146,10 @@ class KycTwo extends Component
     
 
     protected $rules = [
+        'account_number' => 'required|string',
+        'account_id' => 'required|string',
+
+
         'full_name' => 'required|string|max:255',
 
         'date_of_birth'=>'required|date',
@@ -248,6 +256,11 @@ class KycTwo extends Component
         // dd($validatedData);
         
         kyc::create([
+            
+            
+            'account_number' => $this->account_number,
+            'account_id' => $this->account_id,
+            
             'full_name' => $this->full_name,
 
             //permanent

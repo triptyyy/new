@@ -27,6 +27,9 @@ class Kyc2Controller extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'account_number' => 'required|string|max:255',
+            'account_id' => 'required|string|max:255',
+
             'full_name' => 'required|string|max:255',
             'permanent_province' => 'nullable|string',
             'permanent_district' => 'nullable|string',
