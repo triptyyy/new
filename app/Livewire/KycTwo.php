@@ -7,11 +7,13 @@ use App\Models\Province;
 use App\Models\District;
 use App\Models\Municipality;
 use App\Models\kyc;
+use App\Services\BaseApimsService;
+
 use Illuminate\Support\Facades\DB; 
 
 class KycTwo extends Component
 {
-    public $account_number, $account_id;
+    public $account_number, $customer_id;
 
     public $provinces;
     public $districts;
@@ -48,11 +50,16 @@ class KycTwo extends Component
 
     public $date_of_birth;
     public $occupation_business;
-    public $date_of_birth_bs;      
+    public $date_of_birth_bs;  
+
 
     public function call(){
-        $BaseAPImsService = new BaseAPImsService();
-        $BaseAPImsService->process(function_name,data);
+        $data = [
+            "CustId" => $this->cutomer_id,
+            "AcctId" => $this->account_number,
+        ];
+        $baseApimsService = new BaseApimsService();
+        dd($baseApimsService->process("KycDetails",$data));
     }
 
     public function render()

@@ -69,11 +69,11 @@
                     <input type="text" wire:model="account_number" class="form-control form-control">
                 </div>
                 <div class="col-md-4">
-                    <label for="account_id" class="form-label">Account ID</label>
-                    <input type="text" wire:model="account_id" class="form-control form-control">
+                    <label for="customer_id" class="form-label">Customer ID</label>
+                    <input type="text" wire:model="customer_id" class="form-control form-control">
                 </div>
                 <div class="col-md-4">
-                    <button type="submit" wire:click="submit" class="btn btn-primary" >Submit</button>
+                    <button type="submit" wire:click="call" class="btn btn-primary" >Submit</button>
                 </div>
             </div>
         </div>
