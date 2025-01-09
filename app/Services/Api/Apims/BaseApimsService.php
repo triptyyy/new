@@ -32,10 +32,10 @@ class BaseApimsService
 
         // Format date to : yyyy-MMddTHH:mm:ss.fff
 
-        $this->formattedDate = $date->format('Y-m-d\TH:i:s.v');
+        // $this->formattedDate = $date->format('Y-m-d\TH:i:s.v');
 
         $this->formattedDate = $date->setTimezone('Asia/Kathmandu')->format('Y-m-d\TH:i:s.v') ;
-
+        // dd($this->formattedDate);
 
         // Initialize Guzzle Http Client with headers
         $this->client = new Client([
@@ -134,7 +134,6 @@ class BaseApimsService
 
             $response =  Http::withBasicAuth($this->username, $this->password)
                             ->post( $this->baseApi, $requestData );
-
             // get contents of response
             // JSON response is expected
             $rawResponse = $response->getBody()->getContents();

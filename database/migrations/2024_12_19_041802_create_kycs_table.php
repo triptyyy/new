@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); 
             
             $table->string('account_number')->nullable(); 
-            $table->string('account_id')->nullable(); 
+            $table->string('customer_id')->nullable(); 
 
             $table->string('full_name'); 
 

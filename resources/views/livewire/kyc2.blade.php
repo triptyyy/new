@@ -66,14 +66,14 @@
             <div class="row mb-4">
                 <div class="col-md-4">
                     <label for="account_number" class="form-label">Account Number</label>
-                    <input type="text" wire:model="account_number" class="form-control form-control">
+                    <input type="text" wire:model.live="account_number" class="form-control form-control">
                 </div>
                 <div class="col-md-4">
                     <label for="customer_id" class="form-label">Customer ID</label>
-                    <input type="text" wire:model="customer_id" class="form-control form-control">
+                    <input type="text" wire:model.live="customer_id" class="form-control form-control">
                 </div>
                 <div class="col-md-4">
-                    <button type="submit" wire:click="call" class="btn btn-primary" >Submit</button>
+                    <button type="submit" wire:click="apims" class="btn btn-primary" >Submit</button>
                 </div>
             </div>
         </div>

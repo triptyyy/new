@@ -15,8 +15,8 @@ class kyc extends Model
 
     protected $fillable = [
 
+        'customer_id',
         'account_number',
-        'account_id',
 
         
         'full_name',

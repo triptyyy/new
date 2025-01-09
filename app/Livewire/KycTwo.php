@@ -2,12 +2,15 @@
 
 namespace App\Livewire;
 
+
+
 use Livewire\Component;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Municipality;
 use App\Models\kyc;
-use App\Services\BaseApimsService;
+use App\Services\Api\Apims\BaseApimsService;
+// use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB; 
 
@@ -53,14 +56,27 @@ class KycTwo extends Component
     public $date_of_birth_bs;  
 
 
-    public function call(){
+    public function apims()
+    {
+        
         $data = [
-            "CustId" => $this->cutomer_id,
+            "TransactionId" => "123asdfsdfsd\a",
+            "CustId" => $this->customer_id,
             "AcctId" => $this->account_number,
         ];
+        // dd($data);
         $baseApimsService = new BaseApimsService();
         dd($baseApimsService->process("KycDetails",$data));
     }
+
+    // public function call(){
+    //     $data = [
+    //         "CustId" => $this->cutomer_id,
+    //         "AcctId" => $this->account_number,
+    //     ];
+    //     $baseApimsService = new BaseApimsService();
+    //     dd($baseApimsService->process("KycDetails",$data));
+    // }
 
     public function render()
     {
@@ -153,41 +169,41 @@ class KycTwo extends Component
     
 
     protected $rules = [
-        'account_number' => 'required|string',
-        'account_id' => 'required|string',
+        'account_number' => 'nullable|string',
+        'customer_id' => 'nullable|string',
 
 
-        'full_name' => 'required|string|max:255',
+        'full_name' => 'nullable|string|max:255',
 
-        'date_of_birth'=>'required|date',
-        // 'date_of_birth_bs'=>'required|date',
+        'date_of_birth'=>'nullable|date',
+        // 'date_of_birth_bs'=>'nullable|date',
 
             //permanent
-            'permanentProvince' => 'required|string',
-            'permanentDistrict' => 'required|string',
-            'permanentMunicipality' => 'required|string',
-            'permanent_ward_no' => 'required|string',
-            'permanent_village' => 'required|string',
-            'permanent_house_no' => 'required|string',
-            'permanent_phone_no' => 'required|string',
-            'permanent_mobile_no' => 'required|string',
-            'permanent_email' => 'required|email|max:255',
+            'permanentProvince' => 'nullable|string',
+            'permanentDistrict' => 'nullable|string',
+            'permanentMunicipality' => 'nullable|string',
+            'permanent_ward_no' => 'nullable|string',
+            'permanent_village' => 'nullable|string',
+            'permanent_house_no' => 'nullable|string',
+            'permanent_phone_no' => 'nullable|string',
+            'permanent_mobile_no' => 'nullable|string',
+            'permanent_email' => 'nullable|email|max:255',
 
             //temporary
-            'temporaryProvince' => 'required|string',
-            'temporaryDistrict' => 'required|string',
-            'temporaryMuncipality' => 'required|string',
-            'temporary_ward_no' => 'required|string',
-            'temporary_village' => 'required|string',
-            'temporary_house_no' => 'required|string',
-            'temporary_phone_no' => 'required|string',
-            'temporary_mobile_no' => 'required|string',
-            'temporary_email' => 'required|email|max:255',
+            'temporaryProvince' => 'nullable|string',
+            'temporaryDistrict' => 'nullable|string',
+            'temporaryMuncipality' => 'nullable|string',
+            'temporary_ward_no' => 'nullable|string',
+            'temporary_village' => 'nullable|string',
+            'temporary_house_no' => 'nullable|string',
+            'temporary_phone_no' => 'nullable|string',
+            'temporary_mobile_no' => 'nullable|string',
+            'temporary_email' => 'nullable|email|max:255',
 
             //rental
-            'landlords_full_name' => 'required|string|max:255',
-            'rentalProvince' => 'required|string',
-            'rentalDistrict' => 'required|string',
+            'landlords_full_name' => 'nullable|string|max:255',
+            'rentalProvince' => 'nullable|string',
+            'rentalDistrict' => 'nullable|string',
             'rentalMuncipality' => 'required|string',
             'rental_ward_no' => 'required|string',
             'rental_village' => 'required|string',
@@ -204,51 +220,51 @@ class KycTwo extends Component
             'gender' => 'required|string',
 
             //passport details
-            'passport_no' => 'required|string|max:20',
-            'issued_by_passport' => 'required|string|max:50',
-            'issued_date_passport' => 'required|date',
-            'expiry_date_passport' => 'required|date|after:issued_date_passport',
+            'passport_no' => 'nullable|string|max:20',
+            'issued_by_passport' => 'nullable|string|max:50',
+            'issued_date_passport' => 'nullable|date',
+            'expiry_date_passport' => 'nullable|date|after:issued_date_passport',
 
             // Employee Identification
-            'id_no' => 'required|string|max:50',
-            'issuing_office' => 'required|string|max:100',
+            'id_no' => 'nullable|string|max:50',
+            'issuing_office' => 'nullable|string|max:100',
           
             // Family Member Details
-            'husband_wife' => 'required|string|max:255',
-            'father' => 'required|string|max:255',
-            'mother' => 'required|string|max:255',
-            'grandfather' => 'required|string|max:255',
-            'son' => 'required|string|max:255',
-            'daughter' => 'required|string|max:255',
-            'daughter_in_law' => 'required|string|max:255',
-            'father_in_law' => 'required|string|max:255',
+            'husband_wife' => 'nullable|string|max:255',
+            'father' => 'nullable|string|max:255',
+            'mother' => 'nullable|string|max:255',
+            'grandfather' => 'nullable|string|max:255',
+            'son' => 'nullable|string|max:255',
+            'daughter' => 'nullable|string|max:255',
+            'daughter_in_law' => 'nullable|string|max:255',
+            'father_in_law' => 'nullable|string|max:255',
 
-            'projected_annual_deposit' => 'required|numeric',
-            'projected_annual_income' => 'required|numeric',
-            'employment_status' => 'required|string|max:100',
+            'projected_annual_deposit' => 'nullable|numeric',
+            'projected_annual_income' => 'nullable|numeric',
+            'employment_status' => 'nullable|string|max:100',
 
             //sources
-            'sources' => 'required|array',
+            'sources' => 'nullable|array',
             'sources.*' => 'string|max:100',
             
 
             //Account Holder Occupation/Business
-            'occupation_business' => 'required|string|in:occupation,business',
-            'name_of_institution' => 'required|string|max:255',
-            'nature_of_occupation' => 'required|string|max:255',
-            'address_of_inst' => 'required|string|max:255',
-            'position_designation' => 'required|string|max:255',
-            'estimated_annual_income' => 'required|numeric',
+            'occupation_business' => 'nullable|string|in:occupation,business',
+            'name_of_institution' => 'nullable|string|max:255',
+            'nature_of_occupation' => 'nullable|string|max:255',
+            'address_of_inst' => 'nullable|string|max:255',
+            'position_designation' => 'nullable|string|max:255',
+            'estimated_annual_income' => 'nullable|numeric',
             
-            'projected_annual_transaction_amount' => 'required|numeric',
+            'projected_annual_transaction_amount' => 'nullable|numeric',
 
-            'permanent_account_number' => 'required|string|max:20',
+            'permanent_account_number' => 'nullable|string|max:20',
 
             // Other Identification Documents
-            'number_other' => 'required|string|max:50',
-            'issued_by_other' => 'required|string|max:100',
-            'issued_date_other' => 'required|date',
-            'expiry_date_other' => 'required|date',
+            'number_other' => 'nullable|string|max:50',
+            'issued_by_other' => 'nullable|string|max:100',
+            'issued_date_other' => 'nullable|date',
+            'expiry_date_other' => 'nullable|date',
 
            
             
@@ -266,7 +282,7 @@ class KycTwo extends Component
             
             
             'account_number' => $this->account_number,
-            'account_id' => $this->account_id,
+            'customer_id' => $this->customer_id,
             
             'full_name' => $this->full_name,
 
